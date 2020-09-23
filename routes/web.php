@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes(['reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('tasks', 'TaskController')->middleware('auth');
+
+Route::fallback(function () {
+    dd('404');
+});
