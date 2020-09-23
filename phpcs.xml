@@ -111,10 +111,10 @@
     <rule ref="PSR2"/>
     <!-- <rule ref="VariableAnalysis"/>
     <rule ref="ImportDetection"/> -->
-    <rule ref="ImportDetection.Imports.RequireImports">
+    <!-- <rule ref="ImportDetection.Imports.RequireImports">
         <properties>
             <property name="ignoreUnimportedSymbols" value="/^(activity|response|Route|trans)$/"/>
         </properties>
-    </rule>
+    </rule> -->
 
 </ruleset>
