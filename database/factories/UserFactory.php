@@ -4,6 +4,7 @@
 use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ $factory->defineAs(User::class, 'admin', function (Faker $faker) {
 $factory->state(User::class, 'inspector', [
     'name' => 'dcode',
     'email' => 'employment@dode.com.au',
-    'password' => bcrypt('dcode_trial')
+    'password' => Hash::make('dcode_trial')
 ]);
 
 $factory->afterCreating(App\User::class, function ($user, $faker) {
