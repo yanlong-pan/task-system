@@ -14,10 +14,10 @@
                 <div class="card-header">
                     {{ $task->title }}
                     <div class="float-right">
-                        <a href="{{ route('tasks.edit', $task->id) }}" data-target="#task_modal" data-toggle="modal">
+                        <a href="{{ route('tasks.edit', $task->id) }}" data-target="#task_modal_edit" data-toggle="modal">
                             <img class="modal_trigger_icon" src="{{ asset('imgs/pen.svg') }}" alt="edit task">
                         </a>
-                        <a href="{{ route('tasks.delete', $task->id) }}" data-target="#task_modal" data-toggle="modal">
+                        <a href="{{ route('tasks.delete', $task->id) }}" data-target="#task_modal_delete" data-toggle="modal">
                             <img class="modal_trigger_icon" src="{{ asset('imgs/close.svg') }}" alt="delete task">
                         </a>
 
@@ -33,7 +33,14 @@
         @endforeach
     </div>
 
-    <div class="modal fade" id="task_modal" tabindex="-1" aria-labelledby="task_modal" aria-hidden="true">
+    <div class="modal fade" id="task_modal_delete" tabindex="-1" aria-labelledby="task_modal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          </div>
+        </div>
+      </div>
+
+    <div class="modal fade" id="task_modal_edit" tabindex="-1" aria-labelledby="task_modal" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
           </div>
@@ -59,8 +66,9 @@
             confetti_container.fadeIn();
         }
     })
-    $('[data-toggle="modal"]').click(function(){
+    $('[data-toggle="modal"]').click(function(e){
         console.log($(this).attr('href'));
+        e.preventDefault();
         $($(this).data("target")+' .modal-content').load($(this).attr('href'));
     })
 </script>
