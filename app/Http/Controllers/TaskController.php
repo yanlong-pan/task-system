@@ -44,15 +44,12 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, Task $task)
     {
-        try {
-            $task = Task::find($id);
-            if ($request->user()->can('view', $task)) {
-                dd('show');
-            }
-        } catch (\Throwable $th) {
-            dd('something wrong');
+        if ($request->user()->can('view', $task)) {
+            dd('show');
+        } else {
+            abort(401);
         }
     }
 
@@ -74,15 +71,12 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
-        try {
-            $task = Task::find($id);
-            if ($request->user()->can('update', $task)) {
-                dd('update');
-            }
-        } catch (\Throwable $th) {
-            dd('something wrong');
+        if ($request->user()->can('update', $task)) {
+            dd('update');
+        } else {
+            abort(401);
         }
     }
 
@@ -92,15 +86,12 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, Task $task)
     {
-        try {
-            $task = Task::find($id);
-            if ($request->user()->can('delete', $task)) {
-                dd('delete');
-            }
-        } catch (\Throwable $th) {
-            dd('something wrong');
+        if ($request->user()->can('delete', $task)) {
+            dd('delete');
+        } else {
+            abort(401);
         }
     }
 }
