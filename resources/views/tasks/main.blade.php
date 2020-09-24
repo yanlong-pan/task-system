@@ -11,11 +11,13 @@
                 <div class="card-header">
                     {{ $task->title }}
                     <div class="float-right">
-                        <img class="modal_trigger_icon" src="{{ asset('imgs/pen.svg') }}" alt="edit task">
-                        <a href="{{ route('tasks.delete', $task->id) }}" data-target="#delete_task_modal" data-toggle="modal">
+                        <a href="{{ route('tasks.edit', $task->id) }}" data-target="#task_modal" data-toggle="modal">
+                            <img class="modal_trigger_icon" src="{{ asset('imgs/pen.svg') }}" alt="edit task">
+                        </a>
+                        <a href="{{ route('tasks.delete', $task->id) }}" data-target="#task_modal" data-toggle="modal">
                             <img class="modal_trigger_icon" src="{{ asset('imgs/close.svg') }}" alt="delete task">
                         </a>
-                        
+
                     </div>
 
                 </div>
@@ -28,29 +30,9 @@
         @endforeach
     </div>
 
-    {{-- <div class="modal fade" id="delete_task_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            </div>
-        </div>
-    </div> --}}
-
-    <div class="modal fade" id="delete_task_modal" tabindex="-1" aria-labelledby="delete_task_modal" aria-hidden="true">
+    <div class="modal fade" id="task_modal" tabindex="-1" aria-labelledby="task_modal" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            {{-- <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div> --}}
           </div>
         </div>
       </div>
@@ -65,7 +47,7 @@
 
 @section('js')
 <script type="text/javascript">
-    $('[data-toggle="modal"]').click(function(e){
+    $('[data-toggle="modal"]').click(function(){
         console.log($(this).attr('href'));
         $($(this).data("target")+' .modal-content').load($(this).attr('href'));
     })

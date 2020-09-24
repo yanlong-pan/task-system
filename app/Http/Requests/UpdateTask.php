@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Task;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTask extends FormRequest
+class UpdateTask extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,6 +14,8 @@ class StoreTask extends FormRequest
      */
     public function authorize()
     {
+        // $task = Task::find($this->route('task'));
+        // return $task && $this->user()->can('update', $task);
         return true;
     }
 
@@ -25,7 +28,7 @@ class StoreTask extends FormRequest
     {
         return [
             'title' => 'string|required',
-            'description' => 'string|Nullable'
+            'description' => 'string|nullable'
         ];
     }
 }

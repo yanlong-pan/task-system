@@ -6,6 +6,7 @@ use App\Task;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTask;
+use App\Http\Requests\UpdateTask;
 
 class TaskController extends Controller
 {
@@ -25,7 +26,7 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('tasks.create');
     }
@@ -33,7 +34,7 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreTask $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTask $request)
@@ -51,7 +52,8 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $task
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Task $task)
@@ -66,25 +68,31 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, Task $task)
     {
-        //
+        if ($request->user()->can('update', $task)) {
+            return view('tasks.edit', compact('task'));
+        } else {
+            abort(401);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\UpdateTask  $request
+     * @param  int  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(UpdateTask $request, Task $task)
     {
         if ($request->user()->can('update', $task)) {
-            dd('update');
+            $task->update($request->validated());
+            return redirect()->route('tasks.index');
         } else {
             abort(401);
         }
@@ -93,13 +101,15 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $task
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Task $task)
     {
         if ($request->user()->can('delete', $task)) {
-            dd('destroy');
+            $task->delete();
+            return redirect()->route('tasks.index');
         } else {
             abort(401);
         }
@@ -108,7 +118,8 @@ class TaskController extends Controller
     /**
      *  Show the form for destroying the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $task
      * @return \Illuminate\Http\Response
      */
     public function delete(Request $request, Task $task)

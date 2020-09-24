@@ -3,7 +3,7 @@
         'task' => $task,
     ])
     @slot('form_header')
-    <form action="{{ route('tasks.destroy', $task->id) }}" method="post" class="needs-validation form-modal">
+    <form action="{{ route('tasks.destroy', $task->id) }}" method="post" class="form-modal">
         @csrf
         @method('delete')
     @endslot

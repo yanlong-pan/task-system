@@ -1,5 +1,5 @@
 {{ $slot }}
-    
+
     {{ $form_header }}
 
     @if(!$view_only)
@@ -28,7 +28,7 @@
         <div class="col-8 mx-auto">
             <div class="form-group">
                 <label for="description">Task Description</span></label>
-                <textarea class="{{ $view_only ? 'form-control-plaintext' : 'form-control'}}" name="description" id="description" rows="6" value="{{ $task ? $task->description : old('description') }}"></textarea>
+                <textarea class="{{ $view_only ? 'form-control-plaintext' : 'form-control'}}" name="description" id="description" rows="6">{{ $task ? $task->description : old('description') }}</textarea>
             </div>
         </div>
     </div>
