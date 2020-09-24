@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTask;
 
 class TaskController extends Controller
 {
@@ -14,7 +16,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //pagination
+        $tasks = Task::all();
+        return view('tasks.main', compact('tasks'));
     }
 
     /**
@@ -24,7 +27,7 @@ class TaskController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request);
+        return view('tasks.create');
     }
 
     /**
@@ -33,9 +36,15 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTask $request)
     {
-        //
+        try {
+            $validated = $request->validated();
+            $taskInfo = Arr::add($validated, 'user_id', auth()->id());
+            Task::create($taskInfo);
+        } catch (Exception $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
+        }
     }
 
     /**

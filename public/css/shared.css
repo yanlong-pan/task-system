@@ -1,0 +1,13 @@
+.btn-submit {
+    /* width: 200px;  */
+    font-size: 1.5rem;
+    padding: 0.5em 2em;
+}
+
+.form-main {
+    margin: 2rem auto;
+    padding: 2rem 2rem;
+    width: 80%;
+    border-radius: 5px;
+    border: solid #212529 2px;
+}
