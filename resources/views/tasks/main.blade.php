@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center">Main</h1>
+    <h1 class="text-center">To Do</h1>
 
-    <div class="row row-cols-1 row-cols-md-2 mt-3">
+    <div class="row row-cols-1 row-cols-md-2 mt-5">
         @foreach ($tasks as $task)
         <div class="col mb-4">
-            <div class="card">
+            <div class="card shadow bg-white rounded">
                 <div class="card-header">
                     {{ $task->title }}
                     <div class="float-right">

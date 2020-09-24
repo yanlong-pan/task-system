@@ -16,6 +16,13 @@
     border: solid #212529 2px;
 }
 
+@media (max-width : 576px) {
+    .form-main {
+        padding: 2rem 0;
+        width: 100%;
+    }
+}
+
 .form-group label{
     font-size: 1.25rem;
 }
