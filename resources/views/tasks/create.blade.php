@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1 class="text-center">Create new Task</h1>
-    <form action="{{ route('tasks.store') }}" method="post" class="needs-validation form-main" novalidate>
+    {{-- <form action="{{ route('tasks.store') }}" method="post" class="needs-validation form-main" novalidate>
         @csrf
         <div class="form-row">
             <div class="col-8 mx-auto d-flex justify-content-end">
@@ -37,7 +37,16 @@
             </div>
         </div>
 
-    </form>
+    </form> --}}
+    @component('tasks.components._task_detail', [
+            'form_class' => 'form-main',
+            'view_only' => false,
+            'route' => route('tasks.store'),
+            'method' => '',
+            'task' => '',
+            'action' => 'Create',
+        ])
+    @endcomponent
 </div>
 @endsection
 

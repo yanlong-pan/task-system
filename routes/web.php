@@ -20,6 +20,7 @@ Auth::routes(['reset' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('tasks', 'TaskController')->middleware('auth');
+Route::get('tasks/{task}/delete', 'TaskController@delete')->middleware('auth')->name('tasks.delete');
 
 Route::fallback(function () {
     abort('404');
