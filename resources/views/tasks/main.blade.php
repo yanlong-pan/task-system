@@ -4,8 +4,8 @@
 @endsection
 @section('content')
 <div class="container">
-    <div id='confetti-container' data-celebrate="{{ session('celebrate') }}"></div>
     <h1 class="text-center">To Do</h1>
+    <div id='confetti-container' data-celebrate="{{ session('celebrate') }}">Good Job!</div>
 
     <div class="row row-cols-1 row-cols-md-2 mt-5">
         @foreach ($tasks as $task)
@@ -56,6 +56,7 @@
             let num = 10;
             let confettis = "<div class='confetti'></div>".repeat(num);
             confetti_container.prepend(confettis);
+            confetti_container.fadeIn();
         }
     })
     $('[data-toggle="modal"]').click(function(){

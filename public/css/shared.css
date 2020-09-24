@@ -16,13 +16,6 @@
     border: solid #212529 2px;
 }
 
-@media (max-width : 576px) {
-    .form-main {
-        padding: 2rem 0;
-        width: 100%;
-    }
-}
-
 .form-group label{
     font-size: 1.25rem;
 }
@@ -34,4 +27,29 @@
 
 .form-modal {
     margin: 2rem 0;
+}
+
+#confetti-container {
+    display: none;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    color: gold;
+    margin-top: 10%;
+    margin-left: 50%;
+    transform: translate(-50%, -10%);
+}
+
+
+@media (max-width : 576px) {
+    .form-main {
+        padding: 2rem 0;
+        width: 100%;
+        border: solid #212529 0.5px;
+
+    }
+    #confetti-container {
+        margin: auto;
+        transform: none;
+    }
 }
