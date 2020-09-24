@@ -16,7 +16,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::where('user_id', auth()->id())->paginate(6);
         return view('tasks.main', compact('tasks'));
     }
 
@@ -42,6 +42,7 @@ class TaskController extends Controller
             $validated = $request->validated();
             $taskInfo = Arr::add($validated, 'user_id', auth()->id());
             Task::create($taskInfo);
+            return redirect()->route('tasks.index');
         } catch (Exception $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
@@ -98,7 +99,22 @@ class TaskController extends Controller
     public function destroy(Request $request, Task $task)
     {
         if ($request->user()->can('delete', $task)) {
-            dd('delete');
+            dd('destroy');
+        } else {
+            abort(401);
+        }
+    }
+
+    /**
+     *  Show the form for destroying the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, Task $task)
+    {
+        if ($request->user()->can('delete', $task)) {
+            return view('tasks.delete', compact('task'));
         } else {
             abort(401);
         }
