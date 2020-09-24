@@ -1,7 +1,10 @@
 @extends('layouts.app')
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/confetti.css') }}">
+@endsection
 @section('content')
 <div class="container">
+    <div id='confetti-container' data-celebrate="{{ session('celebrate') }}"></div>
     <h1 class="text-center">To Do</h1>
 
     <div class="row row-cols-1 row-cols-md-2 mt-5">
@@ -47,6 +50,14 @@
 
 @section('js')
 <script type="text/javascript">
+    $(function(){
+        let confetti_container = $('#confetti-container')
+        if(confetti_container.data("celebrate")){
+            let num = 10;
+            let confettis = "<div class='confetti'></div>".repeat(num);
+            confetti_container.prepend(confettis);
+        }
+    })
     $('[data-toggle="modal"]').click(function(){
         console.log($(this).attr('href'));
         $($(this).data("target")+' .modal-content').load($(this).attr('href'));
