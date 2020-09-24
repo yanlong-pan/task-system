@@ -16,6 +16,10 @@
     border: solid #212529 2px;
 }
 
+.form-group label{
+    font-size: 1.25rem;
+}
+
 .modal_trigger_icon {
     width: 1.25em;
     /* display: none; */
