@@ -11,7 +11,7 @@
         @foreach ($tasks as $task)
         <div class="col mb-4">
             <div class="card shadow bg-white rounded">
-                <div class="card-header">
+                <div class="card-header {{ $task->isDdlPassed() ? 'bg-warning' : '' }}">
                     {{ __($task->title) }}
                     <div class="float-right">
                         <a href="{{ route('tasks.edit', $task->id) }}" data-target="#task_modal_edit" data-toggle="modal">
