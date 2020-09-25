@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ __($task->description) }}</p>
-                    <p class="card-text text-right"><small class="text-muted">{{ __(now()->diffForHumans($task->deadline)." due") }}</small></p>
+                    <p class="card-text text-right"><small class="text-muted">{{ __($task->deadline) }}</small></p>
                 </div>
             </div>
         </div>
