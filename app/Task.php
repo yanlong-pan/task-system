@@ -36,9 +36,12 @@ class Task extends Model
 
     public function humanReadableDeadline()
     {
-        $n = now();
-        $d =$this->deadline;
-        $glue = strtotime($n) > strtotime($d) ? "after" : "before";
-        return (new \DateTime($this->deadline))->diff($n)->format("%d days, %h hours and %i minuts {$glue} due");
+        $glue = $this->isDdlPassed() ? "after" : "before";
+        return (new \DateTime($this->deadline))->diff(now())->format("%d days, %h hours and %i minuts {$glue} due");
+    }
+
+    public function isDdlPassed()
+    {
+        return strtotime(now()) > strtotime($this->deadline);
     }
 }
