@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ __($task->description) }}</p>
-                    <p class="card-text text-right"><small class="text-muted">{{ __($task->deadline) }}</small></p>
+                    <p class="card-text text-right"><small class="text-muted">{{ __($task->humanReadableDeadline()) }}</small></p>
                 </div>
             </div>
         </div>

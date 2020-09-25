@@ -23,11 +23,19 @@
         </div>
     </div>
 
+    <div class="form-row">
+        <div class="col-8 mx-auto">
+            <div class="form-group">
+                <label for="ddl-picker">{{ __('Deadline') }}</label>
+                <input id="ddl-picker" type="datetime-local" value="{{ $task ? $task->deadline : old('deadline') }}" class="{{ $view_only ? 'form-control-plaintext' : 'form-control'}}" name="deadline" {{ $view_only ? 'readonly' : '' }}>
+            </div>
+        </div>
+    </div>
 
     <div class="form-row">
         <div class="col-8 mx-auto">
             <div class="form-group">
-                <label for="description">{{ __('Task Description') }}</span></label>
+                <label for="description">{{ __('Task Description') }}</label>
                 <textarea class="{{ $view_only ? 'form-control-plaintext' : 'form-control'}}" name="description" id="description" rows="6">{{ $task ? $task->description : old('description') }}</textarea>
             </div>
         </div>
@@ -36,3 +44,4 @@
     {{ $form_footer }}
 
 </form>
+

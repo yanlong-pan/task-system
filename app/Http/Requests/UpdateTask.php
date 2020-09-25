@@ -28,7 +28,8 @@ class UpdateTask extends FormRequest
     {
         return [
             'title' => 'string|required',
-            'description' => 'string|nullable'
+            'description' => 'string|nullable',
+            'deadline' => 'date'
         ];
     }
 }

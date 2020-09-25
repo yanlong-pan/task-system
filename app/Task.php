@@ -26,7 +26,19 @@ class Task extends Model
 
     public function getDeadlineAttribute($value)
     {
-        $td = (new \DateTime($value))->diff(now());
-        return $td->format("%d days, %h hours and %i minuts before due");
+        return (new \DateTime($value))->format('Y-m-d\TH:i:s');
+    }
+
+    public function setDeadlineAttribute($value)
+    {
+        $this->attributes['deadline'] = (new \DateTime($value))->format('Y-m-d H:i:s');
+    }
+
+    public function humanReadableDeadline()
+    {
+        $n = now();
+        $d =$this->deadline;
+        $glue = strtotime($n) > strtotime($d) ? "after" : "before";
+        return (new \DateTime($this->deadline))->diff($n)->format("%d days, %h hours and %i minuts {$glue} due");
     }
 }
