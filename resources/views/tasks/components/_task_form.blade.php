@@ -27,7 +27,8 @@
         <div class="col-8 mx-auto">
             <div class="form-group">
                 <label for="ddl-picker">{{ __('Deadline') }}</label>
-                <input id="ddl-picker" type="datetime-local" value="{{ $task ? $task->deadline : old('deadline') }}" class="{{ $view_only ? 'form-control-plaintext' : 'form-control'}}" name="deadline" {{ $view_only ? 'readonly' : '' }}>
+                <input id="ddl-picker" type="datetime-local" value="{{ $task ? $task->deadline : now()->addHours(12)->format('Y-m-d\TH:i:s') }}" class="{{ $view_only ? 'form-control-plaintext' : 'form-control'}}" name="deadline" {{ $view_only ? 'readonly' : '' }} required>
+                <small class="invalid-feedback form-text text-danger"><img src="{{ asset('imgs/error-icon.svg') }}" alt="invalid-feedback-icon"> {{ __('Please set up a deadline.') }}</small>
             </div>
         </div>
     </div>

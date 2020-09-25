@@ -14,7 +14,7 @@ class AddDeadlineToTasksTable extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dateTime('deadline')->after('description')->default(now('Australia/Melbourne')->addHours(12));
+            $table->dateTime('deadline')->after('description');
         });
     }
 
