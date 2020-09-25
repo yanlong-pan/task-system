@@ -4,15 +4,15 @@
 @endsection
 @section('content')
 <div class="container">
-    <h1 class="text-center">To Do</h1>
-    <div id='confetti-container' data-celebrate="{{ session('celebrate') }}">Good Job!</div>
+    <h1 class="text-center">{{ __('To Do') }}</h1>
+    <div id='confetti-container' data-celebrate="{{ session('celebrate') }}">{{ __("Good Job!") }}</div>
 
     <div class="row row-cols-1 row-cols-md-2 mt-5">
         @foreach ($tasks as $task)
         <div class="col mb-4">
             <div class="card shadow bg-white rounded">
                 <div class="card-header">
-                    {{ $task->title }}
+                    {{ __($task->title) }}
                     <div class="float-right">
                         <a href="{{ route('tasks.edit', $task->id) }}" data-target="#task_modal_edit" data-toggle="modal">
                             <img class="modal_trigger_icon" src="{{ asset('imgs/pen.svg') }}" alt="edit task">
@@ -25,8 +25,8 @@
 
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ $task->description }}</p>
-                    <p class="card-text text-right"><small class="text-muted">{{ now()->diffForHumans($task->updated_at) }}</small></p>
+                    <p class="card-text">{{ __($task->description) }}</p>
+                    <p class="card-text text-right"><small class="text-muted">{{ __(now()->diffForHumans($task->deadline)." due") }}</small></p>
                 </div>
             </div>
         </div>

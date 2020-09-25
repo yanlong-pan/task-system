@@ -10,7 +10,7 @@
     @slot('form_footer')
         <div class="form-row">
             <div class="col-12 text-center">
-                <button class="btn btn-primary btn-submit" type="submit">Update</button>
+                <button class="btn btn-primary btn-submit" type="submit">{{ __('Update') }}</button>
             </div>
         </div>
     @endslot

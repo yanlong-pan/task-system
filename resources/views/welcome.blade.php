@@ -73,18 +73,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Task System
+                    {{ __('Task System') }}
                 </div>
 
                 @if (Route::has('login'))
                     <div class="links">
                         @auth
-                            <a href="{{ route('tasks.index') }}">Home</a>
+                            <a href="{{ route('tasks.index') }}">{{ __('Home') }}</a>
                         @else
-                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
 
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}">Register</a>
+                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @endauth
                     </div>

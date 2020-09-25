@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center">Create new Task</h1>
+    <h1 class="text-center">{{ __('Create new Task') }}</h1>
     @component('tasks.components._task_form', [
             'view_only' => false,
             'task' => '',
@@ -14,7 +14,7 @@
     @slot('form_footer')
         <div class="form-row">
             <div class="col-12 text-center">
-                <button class="btn btn-primary btn-submit" type="submit">Create</button>
+                <button class="btn btn-primary btn-submit" type="submit">{{ __('Create') }}</button>
             </div>
         </div>
     @endslot
