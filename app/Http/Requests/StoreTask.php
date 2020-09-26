@@ -26,7 +26,7 @@ class StoreTask extends FormRequest
         return [
             'title' => 'string|required',
             'description' => 'string|Nullable',
-            'deadline' => 'date'
+            'deadline' => 'date_format:Y-m-d\TH:i:s'
         ];
     }
 }
